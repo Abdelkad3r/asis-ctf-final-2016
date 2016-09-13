@@ -1,4 +1,4 @@
-#coded by Abdelkader
+#Coded by Abdelkader
 #!/usr/bin/python
 
 import socket, sys, hashlib
