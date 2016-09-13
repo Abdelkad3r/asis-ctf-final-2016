@@ -8,8 +8,44 @@
   - But when you use: 'A = 2 * N', you will eliminate it from the equation.
   - so i wrote script for that after understood it (Check srpp.py).
   - Finally i got the FLAG: ASIS{7bdb4b540699ef341f4a3b32469cd3f6}
+./d0ne
+
 + Reverse - Internet Of What?:
   - There are many strings, common path is "lwip": /home/factoreal/.arduino15/packages/esp8266/hardware/esp8266/2.3.0/cores/esp8266/abi.cpp
   - This is ESP8266 firmware for ARDUINO supported in IDA: https://github.com/themadinventor/ida-xtensa
   - Check it too: https://habrahabr.ru/post/255153/ and https://habrahabr.ru/post/255135/
-  - it xref's found: (Check xref's file)
+  - It xref's found: (Check xref's file)
+  - After understand the xref's and wrote the python script for knocking, you will find the IP address for flag page:
+    http://138.68.152.88
+  - Check it: http://prntscr.com/chj2e5
+  - FLAG is: ASIS{The_first_person_to_prove_that_cow_milk_is_drinkable_was_very_very_thirsty} 
+./d0ne
+
++ Reverse - Pretty Shallow:
+  - Decompile it and read the C script:
+    if ( 97 * (input.end - input.start) != 2522 )
+      {
+    LABEL_4:
+        puts("Sorry, try harder!\r");
+        v6 = 1;
+        goto LABEL_5;
+      } 
+  - Flag length is: 26
+  - and read more:
+    def diff(a, b):
+      p = 2
+      v17 = pow(9, 10) - pow(13, 100)
+      r = 100
+      for x, y in zip(a, b):
+        r += 1 << abs(x - y)
+        v17 += 1
+    
+      return r % (2 ** 32)
+  
+    diff(input[0:4], input[5:9]) == 0x17BF26
+    diff(input[5:9][::-1], input[9:13]) == 0x27925A
+    diff(input[0:4], input[13:17][::-1]) == 0x7E3C0
+    diff(input[0:4], input[17:21]) == 0x2A9FA
+    diff(input[0:4], input[21:25]) == diff(input[0:4], input[17:21][::-1]) / 5 - 3028
+
+  - after understood it, i wrote the python script for that: (Check pretty_shallow.py)
