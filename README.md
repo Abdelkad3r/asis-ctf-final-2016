@@ -23,4 +23,6 @@
 
 + Reverse - Pretty Shallow:
   - Decompile it and read the C script: (Check pretty_shallow_diff.c and pretty_shallow_main.c)
-  - after understood it, i wrote the python script for that: (Check pretty_shallow.py)
+  - After understand the C code you will be know that: FLAG length is: 26
+  - After understood it, I wrote the python script for that: (Check pretty_shallow.py)
+  - FLAG is: 
