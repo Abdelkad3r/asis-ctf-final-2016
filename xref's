@@ -18,8 +18,6 @@ ROM:4020410C                 l32r            a2, off_40204060
 ROM:4020410F                 l32r            a0, dword_40204068
 ROM:40204112                 callx0          a0 
 
-# So it's printf, 0x40200000  will be legit
-
 ROM:4021A928                 .int 0x3FFE8000
 ROM:4021A92C                 .int 0x3FFE8374
 ROM:4021A930                 .int aData0xX0xXLenD    ; "data  : 0x%x ~ 0x%x, len: %d\n"
