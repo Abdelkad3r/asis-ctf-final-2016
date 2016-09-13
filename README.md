@@ -6,4 +6,4 @@
   - No need to know 'verifier', so we can send: 'A = 2 * N'
   - The only unknown parameter is 'verifier' because it depends on the password
   - But when you use: 'A = 2 * N', you will eliminate it from the equation.
-  - so i wrote script for that after understood it (look on srpp.py).
+  - so i wrote script for that after understood it (srpp.py).
