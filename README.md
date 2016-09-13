@@ -22,30 +22,5 @@
 ./d0ne
 
 + Reverse - Pretty Shallow:
-  - Decompile it and read the C script:
-    if ( 97 * (input.end - input.start) != 2522 )
-      {
-    LABEL_4:
-        puts("Sorry, try harder!\r");
-        v6 = 1;
-        goto LABEL_5;
-      } 
-  - Flag length is: 26
-  - and read more:
-    def diff(a, b):
-      p = 2
-      v17 = pow(9, 10) - pow(13, 100)
-      r = 100
-      for x, y in zip(a, b):
-        r += 1 << abs(x - y)
-        v17 += 1
-    
-      return r % (2 ** 32)
-  
-    diff(input[0:4], input[5:9]) == 0x17BF26
-    diff(input[5:9][::-1], input[9:13]) == 0x27925A
-    diff(input[0:4], input[13:17][::-1]) == 0x7E3C0
-    diff(input[0:4], input[17:21]) == 0x2A9FA
-    diff(input[0:4], input[21:25]) == diff(input[0:4], input[17:21][::-1]) / 5 - 3028
-
+  - Decompile it and read the C script: (Check pretty_shallow_diff.c and pretty_shallow_main.c)
   - after understood it, i wrote the python script for that: (Check pretty_shallow.py)
