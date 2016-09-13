@@ -64,4 +64,4 @@ ROM:40201D38                 .int 22207
 # It's sequence 
 # IP's above and it tries port 80
 # Let's knock and get the flag !
-# Check my script (internetofwhat.py)
+# Check the script (internetofwhat.py)
