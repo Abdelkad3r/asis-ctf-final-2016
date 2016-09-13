@@ -1,0 +1,67 @@
+ROM:40231280 aData0xX0xXLenD .ascii "data  : 0x%x ~ 0x%x, len: %d\n"
+ROM:4023129E                 .short 0
+ROM:402312A0 aRodata0xX0xXLe .ascii "rodata: 0x%x ~ 0x%x, len: %d\n"
+ROM:402312BE                 .short 0
+ROM:402312C0 aBss0xX0xXLenD  .ascii "bss   : 0x%x ~ 0x%x, len: %d\n"
+ROM:402312DE                 .short 0
+ROM:402312E0 aHeap0xX0xXLenD .ascii "heap  : 0x%x ~ 0x%x, len: %d\n"
+ROM:402312FE                 .short 0 
+
+ROM:4021A818 off_4021A818    .int aIpD_D_D_DMas_0    ; DATA XREF: sub_4021A820+84r
+ROM:4021A818                                         ; "ip:%d.%d.%d.%d,mask:%d.%d.%d.%d,gw:%d.%"...
+ROM:4021A81C off_4021A81C    .int asc_40231270       ; DATA XREF: sub_4021A820+A9r
+ROM:4021A81C                                         ; "\n" 
+
+# xref on nearby strings exists, it's on binary
+
+ROM:4020410C                 l32r            a2, off_40204060
+ROM:4020410F                 l32r            a0, dword_40204068
+ROM:40204112                 callx0          a0 
+
+# So it's printf, 0x40200000  will be legit
+
+ROM:4021A928                 .int 0x3FFE8000
+ROM:4021A92C                 .int 0x3FFE8374
+ROM:4021A930                 .int aData0xX0xXLenD    ; "data  : 0x%x ~ 0x%x, len: %d\n"
+ROM:4021A934                 .int 0x3FFE8380
+ROM:4021A938                 .int 0x3FFE8A00
+ROM:4021A93C                 .int aRodata0xX0xXLe    ; "rodata: 0x%x ~ 0x%x, len: %d\n"
+ROM:4021A940                 .int aBss0xX0xXLenD     ; "bss   : 0x%x ~ 0x%x, len: %d\n"
+ROM:4021A944                 .int 0x3FFEFD68
+ROM:4021A948                 .int 0x3FFFC000
+ROM:4021A94C                 .int aHeap0xX0xXLenD    ; "heap  : 0x%x ~ 0x%x, len: %d\n" 
+
+# It will be 0x1000 data align so..
+
+addr=[0x4023942C,0x40239451,0x4023946D,0x40239497,0x402394B2]
+for i in range(0x100000):
+ if all(struct.pack("<L", addr[j]-addr[0]+0x3ffe8000+i) in rawdata for j in range(len(addr))):
+  print hex(i), hex(addr[0]+i) 
+  
+# 0x3942c=0x904 in ram, and 38b28 is ram start 
+
+ROM:40201D20                 .int 0xFB9
+ROM:40201D24                 .int aSequenceStep1     ; "sequence step 1"
+ROM:40201D28                 .int 0x297B
+ROM:40201D2C                 .int aSequenceStep2     ; "sequence step 2" 
+
+# There are sequence
+
+ROM:40201D20                 .int 0xFB9
+ROM:40201D24                 .int aSequenceStep1     ; "sequence step 1"
+ROM:40201D28                 .int 0x297B
+ROM:40201D2C                 .int aSequenceStep2     ; "sequence step 2"
+ROM:40201D30                 .int 0x7A69
+ROM:40201D34                 .int aSequenceStep3     ; "sequence step 3"
+ROM:40201D38                 .int 0x56BF
+ROM:40201D3C                 .int aSequenceStep4     ; "sequence step 4" 
+
+ROM:40201D20                 .int 4025 
+ROM:40201D28                 .int 10619 
+ROM:40201D30                 .int 31337 
+ROM:40201D38                 .int 22207 
+
+# It's sequence 
+# IP's above and it tries port 80
+# Let's knock and get the flag !
+# Check my script (internetofwhat.py)
